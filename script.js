@@ -50,8 +50,9 @@ moveX(moveBtn, 300, 2000)
 
 // 06-October-2024 : Async-JavaScript with John Smilga
 
-// JavaScript is a single threaded, synchronous language which means, it is executed line after line (one thing at a time)
+// Topic-1 JavaScript is a single threaded, synchronous language which means, it is executed line after line (one thing at a time)
 
+/* ---
 function boilWater() {
   console.log('boiling in progress ...')
   for (let i = 0; i < 10000; i++) {
@@ -66,5 +67,18 @@ boilWater()
 console.log('I am third')
 
 console.log('Water is finally Boiled!')
-
+--- */
 // So, JavaScript is executed single line at a time, It on its own cannot do multi-tasking
+
+/** --- Topic-2 Recipe | Chop Carrots while the water is boiling in the background --- */
+console.log('Getting ready to boil water')
+boilWater(10000)
+console.log('Now we are chopping carrots')
+
+function boilWater() {
+  console.log('boiling ...')
+
+  setTimeout(() => {
+    console.log('done!')
+  }, time)
+}
