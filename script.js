@@ -109,6 +109,8 @@ for (let i = 0; i < 10000; i++) {
 
     Suppose we are on the products page, and we clicked on a particular product to get more information about the product. So, we have to wait until the product info is available to show the product.
 --- */
+
+/* ---
 console.log('boiling started ...')
 setTimeout(() => {
   console.log('boiling done!')
@@ -131,3 +133,46 @@ setTimeout(() => {
     }, 2000)
   })
 }, 5000)
+
+--- */
+
+/** --- EXAMPLE-3: CallBack Hell DOM Example --- */
+
+const btnDOM = document.querySelector('button')
+
+/* --- Not the Right Example
+btnDOM.addEventListener('click', () => {
+  setInterval(() => {
+    btnDOM.style.transform += `translateX(100px)`
+  }, 1000)
+})
+--- */
+
+// This is an Example of Callback Hell in DOM
+function moveX() {
+  setTimeout(() => {
+    btnDOM.style.transform += `translateX(100px)`
+    setTimeout(() => {
+      btnDOM.style.transform += `translateX(100px)`
+      setTimeout(() => {
+        btnDOM.style.transform += `translateX(100px)`
+        setTimeout(() => {
+          btnDOM.style.transform += `translateX(100px)`
+        }, 1000)
+      }, 1000)
+    }, 1000)
+  }, 1000)
+}
+
+moveX()
+
+// async-await example to fetch data
+;(async function getTodos() {
+  // Within this Async-Await function lines are executed one after another
+  const res = await fetch('https://jsonplaceholder.typicode.com/todos')
+  const data = await res.json()
+
+  console.log(data)
+})()
+
+console.log('Synchronous Code!')
