@@ -86,7 +86,7 @@ function boilWater(time) {
 }
 --- */
 // Example-2: Until & Unless the Call Stack is empty, we cannot get the Async Tasks run!
-
+/* ---
 function boilWater(time) {
   console.log('boiling ...')
   setTimeout(time => {
@@ -101,3 +101,33 @@ console.log('chop carrot')
 for (let i = 0; i < 10000; i++) {
   console.log('still busy')
 }
+
+--- */
+
+/* --- CALL BACK HELL! 
+    Whenever we have to perform an action, one after the another in async world, we have to wait until the first action is complete. And only then we can use execute the second action, even in asynchronous world.
+
+    Suppose we are on the products page, and we clicked on a particular product to get more information about the product. So, we have to wait until the product info is available to show the product.
+--- */
+console.log('boiling started ...')
+setTimeout(() => {
+  console.log('boiling done!')
+  setTimeout(() => {
+    console.log('Add Carrots & resume boiling for 5 minutes')
+
+    // Here I am trying to mimic boiling is in process! But anyways this is just an example!
+    setTimeout(() => {
+      console.log('boiling done')
+    }, 5000)
+
+    setTimeout(() => {
+      console.log('Carrots Done!')
+      setTimeout(() => {
+        console.log('Add Onions')
+        setTimeout(() => {
+          console.log('Carrots Done!')
+        })
+      }, 2000)
+    }, 2000)
+  })
+}, 5000)
