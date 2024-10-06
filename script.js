@@ -73,12 +73,12 @@ console.log('Water is finally Boiled!')
 /** --- Topic-2 Recipe | Chop Carrots while the water is boiling in the background --- */
 console.log('Getting ready to boil water')
 boilWater(10000)
-console.log('Now we are chopping carrots')
+console.log('Now we are chopping carrots and meanwhile water is boiling')
 
-function boilWater() {
+function boilWater(time) {
   console.log('boiling ...')
 
   setTimeout(() => {
-    console.log('done!')
+    console.log('Water fully boiled and we are done! with boiling')
   }, time)
 }
