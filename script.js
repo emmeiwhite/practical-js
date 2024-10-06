@@ -71,6 +71,8 @@ console.log('Water is finally Boiled!')
 // So, JavaScript is executed single line at a time, It on its own cannot do multi-tasking
 
 /** --- Topic-2 Recipe | Chop Carrots while the water is boiling in the background --- */
+
+/* ---
 console.log('Getting ready to boil water')
 boilWater(10000)
 console.log('Now we are chopping carrots and meanwhile water is boiling')
@@ -81,4 +83,21 @@ function boilWater(time) {
   setTimeout(() => {
     console.log('Water fully boiled and we are done! with boiling')
   }, time)
+}
+--- */
+// Example-2: Until & Unless the Call Stack is empty, we cannot get the Async Tasks run!
+
+function boilWater(time) {
+  console.log('boiling ...')
+  setTimeout(time => {
+    console.log('Done with boiling water')
+  }, time)
+}
+
+boilWater(1000) // Let's try boiling water only for one second
+console.log('chop carrot')
+
+// But now a synchronous task is taking longer than the assumed set time for the boilWater function
+for (let i = 0; i < 10000; i++) {
+  console.log('still busy')
 }
