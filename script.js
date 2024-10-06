@@ -166,7 +166,7 @@ function moveX() {
 
 moveX()
 
-// async-await example to fetch data
+// async-await example to fetch data; EXAMPLE-4
 ;(async function getTodos() {
   // Within this Async-Await function lines are executed one after another
   const res = await fetch('https://jsonplaceholder.typicode.com/todos')
@@ -176,3 +176,20 @@ moveX()
 })()
 
 console.log('Synchronous Code!')
+
+// EXAMPLE-5: DOM Example Again
+const heading1 = document.querySelector('.heading-1')
+const heading2 = document.querySelector('.heading-2')
+const heading3 = document.querySelector('.heading-3')
+
+setTimeout(() => {
+  heading1.style.backgroundColor = 'green'
+  setTimeout(() => {
+    heading2.style.backgroundColor = 'white'
+    setTimeout(() => {
+      heading3.style.backgroundColor = 'orange'
+    }, 2000)
+  }, 2000)
+}, 2000)
+
+// PROMISE: A better way to handle Asynchronous Code
