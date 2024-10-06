@@ -183,13 +183,24 @@ const heading2 = document.querySelector('.heading-2')
 const heading3 = document.querySelector('.heading-3')
 
 setTimeout(() => {
-  heading1.style.backgroundColor = 'green'
+  heading1.style.backgroundColor = 'red'
   setTimeout(() => {
-    heading2.style.backgroundColor = 'white'
+    heading2.style.backgroundColor = 'green'
     setTimeout(() => {
-      heading3.style.backgroundColor = 'orange'
+      heading3.style.backgroundColor = 'blue'
     }, 2000)
   }, 2000)
 }, 2000)
 
 // PROMISE: A better way to handle Asynchronous Code
+const promise = new Promise((resolve, reject) => {
+  let fetchedData = false // Any Asynchronous Task!
+
+  if (fetchedData) {
+    resolve('The Data is fetched successfully!')
+  } else {
+    reject('Error: Fetching Data')
+  }
+})
+
+promise.then(data => console.log(data)).catch(err => console.log(err))
