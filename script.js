@@ -242,10 +242,12 @@ function loadImage(url) {
 
     img.addEventListener('load', () => {
       console.log('Successfully loaded the image !')
+      resolve(img)
     })
 
     img.addEventListener('error', () => {
       console.log('Failed to load the image')
+      reject('Failed to fetch the image')
     })
 
     img.src = url // Here lies all the trick.
