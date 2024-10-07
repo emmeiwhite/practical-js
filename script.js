@@ -215,43 +215,75 @@ promise.then(data => console.log(data)).catch(err => console.log(err))
  *
  * And we have to handle both of these cases using Promises
  *  --- */
-let url = 'https://picsum.photos/500'
-const imgContainer = document.querySelector('.img-container')
-const btn = document.querySelector('button')
 
-btn.addEventListener('click', () => {
-  // const promise = loadImage(url)
-  // console.log(promise)
+// let url = 'https://picsum.photos/500'
+// const imgContainer = document.querySelector('.img-container')
+// const btn = document.querySelector('button')
 
-  loadImage(url)
-    .then(data => console.log(data))
-    .catch(error => console.log('Error Fetching Data'))
-})
+// btn.addEventListener('click', () => {
+//   // const promise = loadImage(url)
+//   // console.log(promise)
 
-function loadImage(url) {
+//   loadImage(url)
+//     .then(data => console.log(data))
+//     .catch(error => console.log('Error Fetching Data'))
+// })
+
+// function loadImage(url) {
+//   return new Promise((resolve, reject) => {
+//     let img = new Image()
+
+//     /* --- We can add event listeners for the img
+//     a) load: if we are able to load the image
+//     b) error: if we are unable to load the image
+//     TRICK: we can use img.src = url to direct the img tag to its source
+//             - If the url source points to a correct url -> image is loaded
+//             - If the url source points to an incorrect url -> image is not loaded
+//   --- */
+
+//     img.addEventListener('load', () => {
+//       console.log('Successfully loaded the image !')
+//       resolve(img)
+//     })
+
+//     img.addEventListener('error', () => {
+//       console.log('Failed to load the image')
+//       reject('Failed to fetch the image')
+//     })
+
+//     img.src = url // Here lies all the trick.
+//     /** If src points to a correct resource the 'load' event is fired!
+//      * If src points to an incorrect resource the 'error' event is fired! **/
+//   })
+// }
+
+// TECHNIQUE FOR PROMISE.
+/**
+ * 1. Create a function
+ *  2. return a new Promise()
+ * 3. Then within the call back (resolve, reject)=>{}, call resolve() or reject() based on the outcome
+ */
+
+// Promise Example last:
+const heading1 = document.querySelector('.heading-1')
+const heading2 = document.querySelector('heading-2')
+const heading3 = document.querySelector('heading-3')
+
+document.querySelector('button')
+
+function addColor(element, time, color) {
   return new Promise((resolve, reject) => {
-    let img = new Image()
-
-    /* --- We can add event listeners for the img
-    a) load: if we are able to load the image
-    b) error: if we are unable to load the image
-    TRICK: we can use img.src = url to direct the img tag to its source
-            - If the url source points to a correct url -> image is loaded
-            - If the url source points to an incorrect url -> image is not loaded
-    --- */
-
-    img.addEventListener('load', () => {
-      console.log('Successfully loaded the image !')
-      resolve(img)
-    })
-
-    img.addEventListener('error', () => {
-      console.log('Failed to load the image')
-      reject('Failed to fetch the image')
-    })
-
-    img.src = url // Here lies all the trick.
-    /** If src points to a correct resource the 'load' event is fired!
-     * If src points to an incorrect resource the 'error' event is fired! **/
+    if (element) {
+      setTimeout(() => {
+        element.style.color = color
+        resolve()
+      }, time)
+    } else {
+      reject(new Error(`There is no such element ${element}`))
+    }
   })
 }
+
+addColor(heading1, 2000, 'red')
+  .then(data => {})
+  .catch(error => console.log(error))
