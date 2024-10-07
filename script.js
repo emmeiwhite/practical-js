@@ -149,6 +149,8 @@ btnDOM.addEventListener('click', () => {
 --- */
 
 // This is an Example of Callback Hell in DOM
+
+/* ---
 function moveX() {
   setTimeout(() => {
     btnDOM.style.transform += `translateX(100px)`
@@ -204,3 +206,24 @@ const promise = new Promise((resolve, reject) => {
 })
 
 promise.then(data => console.log(data)).catch(err => console.log(err))
+--- */
+
+/** --- Practical Example: Promise Loading an Image from URL
+ * There are Two Possible Scenarios :
+ * 1) The URL will actually return an Image
+ * 2) The URL will not be able to return an Image
+ *
+ * And we have to handle both of these cases using Promises
+ *  --- */
+let url = 'https://picsum.photos/500'
+const imgContainer = document.querySelector('.img-container')
+const btn = document.querySelector('button')
+
+btn.addEventListener('click', () => {
+  const promise = loadImage(url)
+  console.log(promise)
+})
+
+function loadImage(url) {
+  return new Promise((resolve, reject) => {})
+}
