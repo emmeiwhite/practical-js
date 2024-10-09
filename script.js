@@ -265,11 +265,26 @@ promise.then(data => console.log(data)).catch(err => console.log(err))
  */
 
 // Promise Example last:
+/*
 const heading1 = document.querySelector('.heading-1')
-const heading2 = document.querySelector('heading-2')
-const heading3 = document.querySelector('heading-3')
+const heading2 = document.querySelector('.heading-2')
+const heading3 = document.querySelector('.heading-3')
 
-document.querySelector('button')
+const actionBtn = document.querySelector('button')
+
+actionBtn.addEventListener('click', async () => {
+  // addColor(heading1, 2000, 'red')
+  //   .then(() => addColor(heading2, 2000, 'green'))
+  //   .then(() => addColor(heading3, 2000, 'blue'))
+  //   .catch(error => console.log(error))
+  try {
+    await addColor(heading1, 2000, 'red')
+    await addColor(heading2, 2000, 'green')
+    await addColor(heading3, 2000, 'blue')
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 function addColor(element, time, color) {
   return new Promise((resolve, reject) => {
@@ -284,6 +299,4 @@ function addColor(element, time, color) {
   })
 }
 
-addColor(heading1, 2000, 'red')
-  .then(data => {})
-  .catch(error => console.log(error))
+*/
