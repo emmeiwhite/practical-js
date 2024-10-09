@@ -138,7 +138,7 @@ setTimeout(() => {
 
 /** --- EXAMPLE-3: CallBack Hell DOM Example --- */
 
-const btnDOM = document.querySelector('button')
+// const btnDOM = document.querySelector('button')
 
 /* --- Not the Right Example
 btnDOM.addEventListener('click', () => {
@@ -303,6 +303,38 @@ function addColor(element, time, color) {
 
 const url = './api/persons.json'
 
-fetch(url)
-  .then(response => response.json())
-  .then(data => console.log(data))
+const btnDOM = document.querySelector('button')
+
+btnDOM.addEventListener('click', () => {
+  fetchAndrenderUI()
+})
+
+function fetchAndrenderUI() {
+  fetch(url)
+    .then(response => {
+      console.log(response)
+      if (!response.ok) {
+        throw new Error('URL not correct')
+      }
+      return response.json()
+    })
+    .then(data => {
+      displayItems(data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
+
+function displayItems(data) {
+  const personsInUI = data
+    .map(person => {
+      return `<div>${person.name}</div>`
+    })
+    .join('')
+
+  const element = document.createElement('div')
+  element.innerHTML = personsInUI
+  document.body.appendChild(element)
+}
+// Fetch Gotchas: fetch() only looks for network errors 404 (say the url typed is wrong)
