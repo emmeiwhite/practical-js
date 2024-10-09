@@ -301,6 +301,7 @@ function addColor(element, time, color) {
 
 */
 
+/* ---
 const url = './api/persons.json'
 
 const btnDOM = document.querySelector('button')
@@ -308,6 +309,7 @@ const btnDOM = document.querySelector('button')
 btnDOM.addEventListener('click', () => {
   fetchAndrenderUI()
 })
+
 
 function fetchAndrenderUI() {
   fetch(url)
@@ -337,4 +339,41 @@ function displayItems(data) {
   element.innerHTML = personsInUI
   document.body.appendChild(element)
 }
+--- */
 // Fetch Gotchas: fetch() only looks for network errors 404 (say the url typed is wrong)
+
+/** --- Async - Await Syntax  --- */
+
+const url = './api/persons.json'
+
+const btnDOM = document.querySelector('button')
+
+btnDOM.addEventListener('click', async () => {
+  try {
+    const response = await fetch(url)
+    if (!response.ok) {
+      throw new Error('ERROR: Cannot Fetch Data')
+    }
+
+    const data = await response.json()
+
+    console.log(data)
+    // We successfully fetched the data with http request with fetch
+    // Now, It is time to render the Data in UI (UI should be in sync with data)
+
+    const dataWithHTML = data
+      .map(person => {
+        return `<p>${person.name}</p>`
+      })
+      .join('')
+
+    console.log(dataWithHTML)
+
+    const element = document.createElement('div')
+    element.innerHTML = dataWithHTML
+
+    document.body.appendChild(element)
+  } catch (error) {
+    console.log(error)
+  }
+})
