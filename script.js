@@ -300,3 +300,9 @@ function addColor(element, time, color) {
 }
 
 */
+
+const url = './api/persons.json'
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => console.log(data))
