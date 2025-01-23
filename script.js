@@ -377,3 +377,17 @@ btnDOM.addEventListener('click', async () => {
     console.log(error)
   }
 })
+
+// Practicing IIFE - Used before ES6 Modules
+console.log('To avoid namespace collision, we used IIFE before ES6')
+const script1 = (function () {
+  function sayHello() {
+    return 'hello !'
+  }
+
+  return {
+    a: sayHello
+  }
+})()
+
+console.log(script1.a())
