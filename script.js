@@ -391,3 +391,77 @@ const script1 = (function () {
 })()
 
 console.log(script1.a())
+
+/* --- Let's practice this keyword step by step: --- */
+// Basic Easy to understand definition about "this" keyword
+/**
+ * 1. this keyword is available in every execution context (be it global or functional execution context)
+ * 2. this keyword will always point to some object.
+ * 3. Everything is JavaScript is Lexically bound and Lexically scoped, Where a function is defined determines its lexical scope and it have a reference to outer Lexical Environments expect for the this keyword has which has a Dynamic scope and to what object will the this keyword point to is determined by who calls this or which object calls this keyword
+ */
+
+// Some Rules for this Keyword:
+
+/**  Rule 1: this in a Regular Function (Default Context) */
+function thisCheck1() {
+  console.log(this)
+}
+
+thisCheck1() // undefined or window
+
+/**  Rule 2: this in an Object Method */
+
+const user = {
+  name: 'imran',
+  greet() {
+    console.log(this.name) // this refers to the user
+  }
+}
+
+user.greet() // 'imran'
+
+/**  Rule 3: this in a Constructor Function or Class */
+function Person(name) {
+  this.name = name
+}
+
+const me = new Person('rawdha') // a) {}    b) this--->{}   c) me points to the object and so does this
+
+console.log(me.name)
+
+/** Rule 4: this with Arrow Functions:
+ * Arrow functions do not have their own this, they inherit this from the surrounding(lexical) scope where they are defined. [Note: object doesn't have their scope, Functions are lexically scoped --- so we need to see which function is closer to arrow function or which is the closest parent as function and it will inherit this value from it]
+ */
+
+const user2 = {
+  name: 'roufi',
+  greet() {
+    // Outer Lexical scope is greet() function for arrow function. Within greet() function this points to user2, so the this keyword within arrow function will point to user2
+    const arrow = () => {
+      console.log(this.name)
+    }
+
+    arrow()
+  }
+}
+
+user2.greet() // Logs 'roufi
+
+/** Rule 5: this with Explicit Binding :
+ *  We can control what this points to with call, apply & bind
+ */
+
+function showName() {
+  console.log(this.name)
+}
+
+const user3 = {
+  name: 'Sahilu'
+}
+
+const bottle = {
+  name: 'water bottle'
+}
+
+console.log(showName.call(user3))
+console.log(showName.call(bottle))
