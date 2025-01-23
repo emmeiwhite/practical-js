@@ -465,3 +465,33 @@ const bottle = {
 
 console.log(showName.call(user3))
 console.log(showName.call(bottle))
+
+/** --- this keyword --- */
+
+// Now that we know how the "this keyword" works
+
+const wizard = {
+  name: 'rawdha',
+  health: 70,
+  heal() {
+    return (this.health = 100)
+  }
+}
+
+console.log(`**********  WIZARD: ${wizard.name} has HEALING POWERS: ***********`)
+console.log(wizard.heal())
+
+// Now that the wizard can heal, the archer do not has a healing power, He needs to consult wizard and borrow healing power from the wizard
+
+const archer = {
+  name: 'imran',
+  health: 30
+}
+
+console.log(`Archer: ${archer.name}'s health is ${archer.health}`)
+
+wizard.heal.call(archer)
+
+console.log(
+  `After healing powers granted by ${wizard.name}, healing power of ${archer.name} is also ${archer.health}`
+)
